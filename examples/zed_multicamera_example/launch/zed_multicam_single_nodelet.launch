@@ -18,7 +18,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
     <!-- System name -->
-    <arg name="system_name"  default="zed_multi" />
+    <arg name="system_name"  default="zed_multi_slave" />
 
     <!-- Name of the Nodelet Manager -->
     <arg name="nodelet_manager_name"    default="$(arg system_name)_nodelet_manager" />
@@ -40,7 +40,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Publish odom TF -->
     <arg name="publish_tf_1"            default="true" />
 
-    <arg name="camera_sn_1"             default="25555745" /> <!-- Very important to be able to identify the camera uniquely--> 
+    <arg name="camera_sn_1"             default="20122290" /> <!-- Very important to be able to identify the camera uniquely--> 
     <arg name="gpu_id_1"                default="-1" />
 
     <!-- Position respect to base frame (i.e. "base_link) -->
@@ -67,7 +67,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Publish odom TF -->
     <arg name="publish_tf_2"            default="false" /> <!-- Only one node must pushish TF, unless you use a Kalman filter to fuse odometries -->
 
-    <arg name="camera_sn_2"             default="23154724" /> <!-- Very important to be able to identify the camera uniquely-->  
+    <arg name="camera_sn_2"             default="29342011" /> <!-- Very important to be able to identify the camera uniquely-->  
     <arg name="gpu_id_2"                default="-1" />
 
     <!-- Position respect to base frame (i.e. "base_link) -->
@@ -88,7 +88,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     <!-- Start nodelet manager and two nodelets in the "system_name" namespace-->
     <group ns="$(arg system_name)">
         <!-- Common nodelet Manager -->
-        <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager_name)"  args="manager" output="screen" />
+        <node pkg="nodelet" type="nodelet" name="$(arg nodelet_manager_name)"  args="manager" output="screen" required="false" respawn="true"/>
 
         <group ns="$(arg camera_name_1)">
             <!-- Load ZED wrapper nodelet for camera 1 -->
